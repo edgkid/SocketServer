@@ -5,28 +5,15 @@
  */
 package socketserver;
 
-import com.sun.prism.paint.Color;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.ServerSocket;
-import java.net.Socket;
-import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
-
+import javax.swing.JLabel;
 /**
  *
  * @author Edgar
  */
 public class ViewServerSocketFrame extends javax.swing.JFrame {
-
-    static Socket socket;
-    static ServerSocket serverSocket;
-    static InputStreamReader inputStreamReader;
-    static BufferedReader bufferReader;
-    static String message;
     
     Toolkit t;
     Dimension screenSize;
@@ -48,11 +35,15 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
         this.jButtonClose.setBorder(null);
         this.jButtonMinimize.setBackground(java.awt.Color.white);
         this.jButtonMinimize.setBorder(null);
+
+        //int positionX = viewServerSocketFrame.getjImage().getSize().width;
+        int labelWith = this.getWidth() / 2;
+        int positionX = (this.getWidth() / 3) - 100;
+        int positionY = 0;
         
+        this.getjImage().setSize(labelWith, this.getjImage().getHeight());
+        this.getjImage().setLocation(positionX, positionY);
         
-        jImage.setBackground(java.awt.Color.red);
-        jImage.setAlignmentX(javax.swing.SwingConstants.CENTER);
-        jImage.setAlignmentX(javax.swing.SwingConstants.CENTER);
     }
 
     /**
@@ -77,7 +68,6 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
 
         jButtonClose.setBackground(new java.awt.Color(255, 255, 255));
         jButtonClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttonClose.png"))); // NOI18N
-        jButtonClose.setLabel("");
         jButtonClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonCloseMouseClicked(evt);
@@ -93,6 +83,7 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
             }
         });
 
+        jImage.setBackground(new java.awt.Color(255, 255, 255));
         jImage.setText("jImage");
 
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
@@ -104,11 +95,9 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
                 .addComponent(jButtonClose)
                 .addGap(30, 30, 30)
                 .addComponent(jButtonMinimize)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
-                .addContainerGap(181, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
                 .addComponent(jImage, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(171, 171, 171))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,9 +106,8 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonMinimize)
                     .addComponent(jButtonClose))
-                .addGap(18, 18, 18)
-                .addComponent(jImage, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 22, Short.MAX_VALUE))
+                .addGap(0, 320, Short.MAX_VALUE))
+            .addComponent(jImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -174,6 +162,9 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ViewServerSocketFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -182,34 +173,23 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
             }
         });
         
-        try{
-           
-            serverSocket = new ServerSocket(6000); 
-            while (true){
-                
-                socket = serverSocket.accept();
-                inputStreamReader = new InputStreamReader(socket.getInputStream());
-                bufferReader = new BufferedReader(inputStreamReader);
-                message = bufferReader.readLine();
-                
-                System.out.println(message);
-                jImage.setText(message);
-
-            }
-            
-            
-        }catch(IOException e){
-            e.printStackTrace();
-            
-        }
-        
-        
     }
+
+    public JLabel getjImage() {
+        return jImage;
+    }
+
+    public void setjImage(JLabel jImage) {
+        this.jImage = jImage;
+    }
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonClose;
     private javax.swing.JButton jButtonMinimize;
-    private static javax.swing.JLabel jImage;
+    private javax.swing.JLabel jImage;
     private static javax.swing.JPanel jPanel;
     // End of variables declaration//GEN-END:variables
 }
