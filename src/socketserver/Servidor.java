@@ -6,11 +6,19 @@
 package socketserver;
 
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.URL;
+import java.util.Base64;
+import javax.imageio.ImageIO;
+import static javax.swing.GroupLayout.Alignment.CENTER;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -23,6 +31,7 @@ public class Servidor {
     static InputStreamReader inputStreamReader;
     static BufferedReader bufferReader;
     static String message;
+    static BufferedImage image = null;
 
     /**
      * @param args the command line arguments
@@ -33,6 +42,13 @@ public class Servidor {
         int positionY = 0;
         int labelWith = 0;
         int count = 0;
+        String path = "";
+        
+        int labelOriginWith = 0;
+        int labelOriginHigh = 0;
+        int labelImageWith = 0;
+        int labelImageHigh= 0;
+        ImageIcon icon = null;
         
         try{
            
@@ -41,7 +57,7 @@ public class Servidor {
             viewServerSocketFrame.setVisible(true);
             
             positionX = viewServerSocketFrame.getjImage().getSize().width;
-              
+            
             while (true){
 
                 labelWith = viewServerSocketFrame.getWidth() / 2;
@@ -54,12 +70,22 @@ public class Servidor {
                 inputStreamReader = new InputStreamReader(socket.getInputStream());
                 bufferReader = new BufferedReader(inputStreamReader);
                 message = bufferReader.readLine();
-
-                System.out.println(message);
-
-                viewServerSocketFrame.getjImage().setText(message);
                 
                 
+                viewServerSocketFrame.getjImage().setOpaque(true);
+                viewServerSocketFrame.getjImage().setBackground(Color.red);
+                //////Procesando imagenes
+                Base64.Decoder decoder = Base64.getDecoder();
+                byte[] decodedByteArray = decoder.decode(message);
+                BufferedImage image = ImageIO.read(new ByteArrayInputStream(decodedByteArray));
+ 
+               viewServerSocketFrame.getjImage().setSize(viewServerSocketFrame.getWidth() / 2, viewServerSocketFrame.getHeight());
+               icon = new ImageIcon(image.getScaledInstance(viewServerSocketFrame.getjImage().getWidth(), viewServerSocketFrame.getHeight(), image.SCALE_DEFAULT));
+
+                viewServerSocketFrame.getjImage().setAlignmentX(javax.swing.JLabel.CENTER);
+                viewServerSocketFrame.getjImage().setAlignmentY(javax.swing.JLabel.CENTER);
+
+                viewServerSocketFrame.getjImage().setIcon(icon);
             }
             
             

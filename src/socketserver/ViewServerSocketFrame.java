@@ -41,6 +41,8 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
         int positionX = (this.getWidth() / 3) - 100;
         int positionY = 0;
         
+        this.getjImage().setOpaque(true);
+        this.getjImage().setBackground(Color.red);
         this.getjImage().setSize(labelWith, this.getjImage().getHeight());
         this.getjImage().setLocation(positionX, positionY);
         
@@ -95,9 +97,9 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
                 .addComponent(jButtonClose)
                 .addGap(30, 30, 30)
                 .addComponent(jButtonMinimize)
-                .addGap(31, 31, 31)
-                .addComponent(jImage, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jImage, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(133, Short.MAX_VALUE))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,7 +108,7 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonMinimize)
                     .addComponent(jButtonClose))
-                .addGap(0, 320, Short.MAX_VALUE))
+                .addContainerGap(321, Short.MAX_VALUE))
             .addComponent(jImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
