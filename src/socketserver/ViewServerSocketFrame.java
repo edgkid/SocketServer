@@ -36,15 +36,6 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
         this.jButtonMinimize.setBackground(java.awt.Color.white);
         this.jButtonMinimize.setBorder(null);
 
-        //int positionX = viewServerSocketFrame.getjImage().getSize().width;
-        int labelWith = this.getWidth() / 2;
-        int positionX = (this.getWidth() / 3) - 100;
-        int positionY = 0;
-        
-        this.getjImage().setOpaque(true);
-        this.getjImage().setBackground(Color.red);
-        this.getjImage().setSize(labelWith, this.getjImage().getHeight());
-        this.getjImage().setLocation(positionX, positionY);
         
     }
 

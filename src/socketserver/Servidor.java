@@ -41,8 +41,9 @@ public class Servidor {
         int positionX = 0;
         int positionY = 0;
         int labelWith = 0;
+        int labelHigh = 0;
         int count = 0;
-        String path = "";
+        String figura = "";
         
         int labelOriginWith = 0;
         int labelOriginHigh = 0;
@@ -56,36 +57,72 @@ public class Servidor {
             ViewServerSocketFrame viewServerSocketFrame = new ViewServerSocketFrame();
             viewServerSocketFrame.setVisible(true);
             
-            positionX = viewServerSocketFrame.getjImage().getSize().width;
-            
+            System.out.println("Ventana " + viewServerSocketFrame.screenSize.width + " X " + viewServerSocketFrame.screenSize.height);
             while (true){
-
-                labelWith = viewServerSocketFrame.getWidth() / 2;
-                positionX = (viewServerSocketFrame.getWidth() / 3) - 100;
-
-                viewServerSocketFrame.getjImage().setSize(labelWith, viewServerSocketFrame.getjImage().getHeight());
-                viewServerSocketFrame.getjImage().setLocation(positionX, positionY);
 
                 socket = serverSocket.accept();
                 inputStreamReader = new InputStreamReader(socket.getInputStream());
                 bufferReader = new BufferedReader(inputStreamReader);
                 message = bufferReader.readLine();
                 
-                
-                viewServerSocketFrame.getjImage().setOpaque(true);
-                viewServerSocketFrame.getjImage().setBackground(Color.red);
-                //////Procesando imagenes
                 Base64.Decoder decoder = Base64.getDecoder();
                 byte[] decodedByteArray = decoder.decode(message);
                 BufferedImage image = ImageIO.read(new ByteArrayInputStream(decodedByteArray));
- 
-               viewServerSocketFrame.getjImage().setSize(viewServerSocketFrame.getWidth() / 2, viewServerSocketFrame.getHeight());
-               icon = new ImageIcon(image.getScaledInstance(viewServerSocketFrame.getjImage().getWidth(), viewServerSocketFrame.getHeight(), image.SCALE_DEFAULT));
 
-                viewServerSocketFrame.getjImage().setAlignmentX(javax.swing.JLabel.CENTER);
-                viewServerSocketFrame.getjImage().setAlignmentY(javax.swing.JLabel.CENTER);
+                System.out.println("tanaño anterior " + viewServerSocketFrame.getjImage().getWidth() + " X " + viewServerSocketFrame.getjImage().getHeight());
+                
+               if (count == 0){
+                    labelWith = viewServerSocketFrame.screenSize.width / 2;
+                    labelHigh = viewServerSocketFrame.screenSize.height;
+                    positionX = (viewServerSocketFrame.screenSize.width / 3) - 100;
+                    System.out.println("Cartas");
+                    figura = "carta";
+               }
+               if (count >= 1 && count < 12) {
+                   
+                   labelHigh = image.getHeight();
+                   figura = "fila";
+                   if (image.getWidth() >= viewServerSocketFrame.getWidth()){
+                        labelWith = viewServerSocketFrame.getWidth();
+                        positionX =0;
+                        positionY = (viewServerSocketFrame.getHeight() / 2) - (image.getHeight() / 2) ;
+                        System.out.println("Filas Ajustadas");
+                   }else{
+                       labelWith = image.getWidth();
+                       positionX = (viewServerSocketFrame.getWidth() / 2 ) - (image.getWidth() / 2);
+                       positionY = (viewServerSocketFrame.getHeight() / 2) - (image.getHeight() / 2);
+                       System.out.println("Filas sin Ajustar");
+                   }
 
-                viewServerSocketFrame.getjImage().setIcon(icon);
+               } 
+                
+               System.out.println(count);
+
+                viewServerSocketFrame.getjImage().setSize(labelWith, labelHigh);
+                viewServerSocketFrame.getjImage().setLocation(positionX, positionY);
+                
+                viewServerSocketFrame.getjImage().setOpaque(true);
+                viewServerSocketFrame.getjImage().setBackground(Color.red);
+                
+                //viewServerSocketFrame.getjImage().setText(figura);
+                icon = new ImageIcon(image.getScaledInstance(labelWith, labelHigh, image.SCALE_DEFAULT));
+
+                //viewServerSocketFrame.getjImage().setIcon(icon);
+                /*viewServerSocketFrame.repaint();*/
+
+                System.out.println("imagen " + image.getWidth() + " X " + image.getHeight());
+                System.out.println("Label " + labelWith + " X " + labelHigh);
+                System.out.println("Posición ( " + positionX +"," + positionY + " )");
+                
+                if (count >= 11){
+
+                     System.out.println("reset");
+                     count = -1;
+                     positionX = 0;
+                     positionY = 0;
+                 }
+                
+                count ++;
             }
             
             
