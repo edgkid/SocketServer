@@ -6,6 +6,8 @@
 package socketserver;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -56,8 +58,8 @@ public class Servidor {
             serverSocket = new ServerSocket(5000); 
             ViewServerSocketFrame viewServerSocketFrame = new ViewServerSocketFrame();
             viewServerSocketFrame.setVisible(true);
-            
-            System.out.println("Ventana " + viewServerSocketFrame.screenSize.width + " X " + viewServerSocketFrame.screenSize.height);
+     
+            //System.out.println("Ventana " + viewServerSocketFrame.screenSize.width + " X " + viewServerSocketFrame.screenSize.height);
             while (true){
 
                 socket = serverSocket.accept();
@@ -71,14 +73,14 @@ public class Servidor {
 
                 System.out.println("tanaño anterior " + viewServerSocketFrame.getjImage().getWidth() + " X " + viewServerSocketFrame.getjImage().getHeight());
                 
-               if (count == 0){
+               if (count == 1){
                     labelWith = viewServerSocketFrame.screenSize.width / 2;
                     labelHigh = viewServerSocketFrame.screenSize.height;
                     positionX = (viewServerSocketFrame.screenSize.width / 3) - 100;
                     System.out.println("Cartas");
-                    figura = "carta";
+                    //figura = "carta";
                }
-               if (count >= 1 && count < 12) {
+               if (count >= 2 && count < 22) {
                    
                    labelHigh = image.getHeight();
                    figura = "fila";
@@ -86,38 +88,36 @@ public class Servidor {
                         labelWith = viewServerSocketFrame.getWidth();
                         positionX =0;
                         positionY = (viewServerSocketFrame.getHeight() / 2) - (image.getHeight() / 2) ;
-                        System.out.println("Filas Ajustadas");
+                        //System.out.println("Filas Ajustadas");
                    }else{
                        labelWith = image.getWidth();
                        positionX = (viewServerSocketFrame.getWidth() / 2 ) - (image.getWidth() / 2);
                        positionY = (viewServerSocketFrame.getHeight() / 2) - (image.getHeight() / 2);
-                       System.out.println("Filas sin Ajustar");
+                       //System.out.println("Filas sin Ajustar");
                    }
 
                } 
                 
-               System.out.println(count);
+               //System.out.println(count);
 
                 viewServerSocketFrame.getjImage().setSize(labelWith, labelHigh);
                 viewServerSocketFrame.getjImage().setLocation(positionX, positionY);
                 
                 viewServerSocketFrame.getjImage().setOpaque(true);
                 viewServerSocketFrame.getjImage().setBackground(Color.red);
-                
-                //viewServerSocketFrame.getjImage().setText(figura);
-                icon = new ImageIcon(image.getScaledInstance(labelWith, labelHigh, image.SCALE_DEFAULT));
 
-                //viewServerSocketFrame.getjImage().setIcon(icon);
-                /*viewServerSocketFrame.repaint();*/
+                icon = new ImageIcon(image);
+                viewServerSocketFrame.getjImage().setIcon(icon);
 
-                System.out.println("imagen " + image.getWidth() + " X " + image.getHeight());
+                /*System.out.println("imagen " + image.getWidth() + " X " + image.getHeight());
                 System.out.println("Label " + labelWith + " X " + labelHigh);
-                System.out.println("Posición ( " + positionX +"," + positionY + " )");
-                
-                if (count >= 11){
+                System.out.println("Posición ( " + positionX +"," + positionY + " )");*/
+               
+              
+                if (count >= 22){
 
                      System.out.println("reset");
-                     count = -1;
+                     count = 0;
                      positionX = 0;
                      positionY = 0;
                  }
