@@ -35,7 +35,6 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
         this.jButtonClose.setBorder(null);
         this.jButtonMinimize.setBackground(java.awt.Color.white);
         this.jButtonMinimize.setBorder(null);
-
         
     }
 
@@ -51,7 +50,6 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
         jPanel = new javax.swing.JPanel();
         jButtonClose = new javax.swing.JButton();
         jButtonMinimize = new javax.swing.JButton();
-        jImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -76,9 +74,6 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
             }
         });
 
-        jImage.setBackground(new java.awt.Color(255, 255, 255));
-        jImage.setText("jImage");
-
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
         jPanelLayout.setHorizontalGroup(
@@ -88,9 +83,7 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
                 .addComponent(jButtonClose)
                 .addGap(30, 30, 30)
                 .addComponent(jButtonMinimize)
-                .addGap(18, 18, 18)
-                .addComponent(jImage, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addContainerGap(412, Short.MAX_VALUE))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,7 +93,6 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
                     .addComponent(jButtonMinimize)
                     .addComponent(jButtonClose))
                 .addContainerGap(321, Short.MAX_VALUE))
-            .addComponent(jImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -168,21 +160,9 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
         
     }
 
-    public JLabel getjImage() {
-        return jImage;
-    }
-
-    public void setjImage(JLabel jImage) {
-        this.jImage = jImage;
-    }
-    
-    
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonClose;
     private javax.swing.JButton jButtonMinimize;
-    private javax.swing.JLabel jImage;
     private static javax.swing.JPanel jPanel;
     // End of variables declaration//GEN-END:variables
 }
