@@ -16,6 +16,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Base64;
 import javax.imageio.ImageIO;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 
 
@@ -42,9 +43,11 @@ public class Servidor {
         int labelWith = 0;
         int labelHigh = 0;
         int count = 0;
+        DefaultListModel listView = new DefaultListModel();
         
         ImageIcon icon = null;
         ViewServerCanvas viewServerCanvas = null;
+        ViewServerCanvas viewServerCanvasAux = null;
         
         try{
            
@@ -85,16 +88,25 @@ public class Servidor {
                
                icon = new ImageIcon(image.getScaledInstance(labelWith, labelHigh, Image.SCALE_DEFAULT));
                viewServerCanvas = new ViewServerCanvas(labelWith, labelHigh, icon, positionX, positionY);
+               listView.add(count,viewServerCanvas );
                viewServerCanvas.setVisible(true);
-
+               
                 if (count >= 11){
 
                      count = -1;
                      positionX = 0;
                      positionY = 0;
+                     listView = null; 
                  }
                 
+                if (count >0){
+                
+                    viewServerCanvasAux = (ViewServerCanvas) listView.get(count-1);
+                    viewServerCanvasAux.dispose();
+                }
+                
                 count ++;
+                
             }
             
             
