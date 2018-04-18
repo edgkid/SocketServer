@@ -43,18 +43,21 @@ public class Servidor {
         int labelWith = 0;
         int labelHigh = 0;
         int count = 0;
-        DefaultListModel listView = new DefaultListModel();
+        DefaultListModel listView = null;
         
         ImageIcon icon = null;
         ViewServerCanvas viewServerCanvas = null;
         ViewServerCanvas viewServerCanvasAux = null;
+        ViewServerCanvas deleteComponent = null;
         
         try{
            
             serverSocket = new ServerSocket(5000); 
             ViewServerSocketFrame viewServerSocketFrame = new ViewServerSocketFrame();
             viewServerSocketFrame.setVisible(true);
-     
+                
+            listView = new DefaultListModel();
+            
             while (true){
 
                 socket = serverSocket.accept();
@@ -71,7 +74,7 @@ public class Servidor {
                     labelHigh = viewServerSocketFrame.screenSize.height;
                     positionX = (viewServerSocketFrame.screenSize.width / 3) - 100;
                 }
-                if (count >= 1 && count < 11) {
+                if (count >= 1) {
 
                     labelHigh = image.getHeight();
                     if (image.getWidth() >= viewServerSocketFrame.getWidth()){
@@ -85,31 +88,36 @@ public class Servidor {
                     }
 
                 } 
-               
-               icon = new ImageIcon(image.getScaledInstance(labelWith, labelHigh, Image.SCALE_DEFAULT));
-               viewServerCanvas = new ViewServerCanvas(labelWith, labelHigh, icon, positionX, positionY);
-               listView.add(count,viewServerCanvas );
-               viewServerCanvas.setVisible(true);
-               
-                if (count >= 11){
-
-                     count = -1;
-                     positionX = 0;
-                     positionY = 0;
-                     listView = null; 
-                 }
                 
-                if (count >0){
+                if (count > 0){
                 
                     viewServerCanvasAux = (ViewServerCanvas) listView.get(count-1);
                     viewServerCanvasAux.dispose();
                 }
+               
+               icon = new ImageIcon(image.getScaledInstance(labelWith, labelHigh, Image.SCALE_DEFAULT));
+               viewServerCanvas = new ViewServerCanvas(labelWith, labelHigh, icon, positionX, positionY);
+               
                 
+                if (count < 12){
+                    listView.add(count,viewServerCanvas );
+                    viewServerCanvas.setVisible(true);
+                }else{
+                    count = -1;
+                    positionX = 0;
+                    positionY = 0;
+                    for (int i = 0; i < listView.getSize(); i++){
+                       deleteComponent = (ViewServerCanvas) listView.get(i);
+                       deleteComponent.dispose();
+                    }
+                    listView.removeAllElements();
+                }
+                
+                System.out.println(count);
                 count ++;
-                
+
             }
-            
-            
+  
         }catch(IOException e){
             e.printStackTrace();
             
