@@ -36,6 +36,8 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
         this.jButtonMinimize.setBackground(java.awt.Color.white);
         this.jButtonMinimize.setBorder(null);
         
+        this.jLabelAv.setLocation(screenSize.width - this.jLabelAv.getWidth(), screenSize.height - this.jLabelAv.getHeight());
+        
     }
 
     /**
@@ -50,6 +52,8 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
         jPanel = new javax.swing.JPanel();
         jButtonClose = new javax.swing.JButton();
         jButtonMinimize = new javax.swing.JButton();
+        jLabelAv = new javax.swing.JLabel();
+        jLabelTagAv = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -74,25 +78,41 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabelAv.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jLabelAv.setText("0");
+
+        jLabelTagAv.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jLabelTagAv.setText("AV:");
+
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
         jPanelLayout.setHorizontalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButtonClose)
-                .addGap(30, 30, 30)
-                .addComponent(jButtonMinimize)
-                .addContainerGap(412, Short.MAX_VALUE))
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonClose)
+                    .addComponent(jButtonMinimize))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
+                .addContainerGap(438, Short.MAX_VALUE)
+                .addComponent(jLabelTagAv)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelAv, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonMinimize)
-                    .addComponent(jButtonClose))
-                .addContainerGap(321, Short.MAX_VALUE))
+                .addComponent(jButtonClose)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonMinimize)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelAv, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelTagAv, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -160,9 +180,21 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
         
     }
 
+    public JLabel getjLabelAv() {
+        return jLabelAv;
+    }
+
+    public void setjLabelAv(JLabel jLabelAv) {
+        this.jLabelAv = jLabelAv;
+    }
+    
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonClose;
     private javax.swing.JButton jButtonMinimize;
+    private javax.swing.JLabel jLabelAv;
+    private javax.swing.JLabel jLabelTagAv;
     private static javax.swing.JPanel jPanel;
     // End of variables declaration//GEN-END:variables
 }

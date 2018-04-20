@@ -32,6 +32,7 @@ public class Servidor {
     static BufferedReader bufferReader;
     static String message;
     static BufferedImage image = null;
+    static ArrayList<String> arrayListAv = new ArrayList<String>();
 
     /**
      * @param args the command line arguments
@@ -49,6 +50,8 @@ public class Servidor {
         ViewServerCanvas viewServerCanvas = null;
         ViewServerCanvas viewServerCanvasAux = null;
         ViewServerCanvas deleteComponent = null;
+        
+        fillAvList();
         
         try{
            
@@ -73,6 +76,7 @@ public class Servidor {
                     labelWith = viewServerSocketFrame.screenSize.width / 2;
                     labelHigh = viewServerSocketFrame.screenSize.height;
                     positionX = (viewServerSocketFrame.screenSize.width / 3) - 100;
+                    System.out.println("Carta");
                 }
                 if (count >= 1) {
 
@@ -81,10 +85,12 @@ public class Servidor {
                          labelWith = viewServerSocketFrame.getWidth();
                          positionX =0;
                          positionY = (viewServerSocketFrame.getHeight() / 2) - (image.getHeight() / 2) ;
+                         System.out.println("Fila Ajustada");
                     }else{
                         labelWith = image.getWidth();
                         positionX = (viewServerSocketFrame.getWidth() / 2 ) - (image.getWidth() / 2);
                         positionY = (viewServerSocketFrame.getHeight() / 2) - (image.getHeight() / 2);
+                        System.out.println("Fila No Ajustada");
                     }
 
                 } 
@@ -93,6 +99,7 @@ public class Servidor {
                 
                     viewServerCanvasAux = (ViewServerCanvas) listView.get(count-1);
                     viewServerCanvasAux.dispose();
+                    
                 }
                
                icon = new ImageIcon(image.getScaledInstance(labelWith, labelHigh, Image.SCALE_DEFAULT));
@@ -102,6 +109,11 @@ public class Servidor {
                 if (count < 12){
                     listView.add(count,viewServerCanvas );
                     viewServerCanvas.setVisible(true);
+                    
+                    if (count > 0){
+                        viewServerSocketFrame.getjLabelAv().setText(arrayListAv.get(count-1));
+                    }
+
                 }else{
                     count = -1;
                     positionX = 0;
@@ -111,10 +123,14 @@ public class Servidor {
                        deleteComponent.dispose();
                     }
                     listView.removeAllElements();
+                    viewServerSocketFrame.getjLabelAv().setText("0");
                 }
                 
                 System.out.println(count);
                 count ++;
+                
+                System.out.println("Pantalla: " + viewServerSocketFrame.getWidth() + " X " + viewServerSocketFrame.getHeight());
+                System.out.println("Label: " + labelWith + " X " + labelHigh);
 
             }
   
@@ -123,6 +139,22 @@ public class Servidor {
             
         }
         
+    }
+    
+    public static void fillAvList(){
+        
+        arrayListAv.add("0.1");
+        arrayListAv.add("0.13");
+        arrayListAv.add("0.17");
+        arrayListAv.add("0.20");
+        arrayListAv.add("0.25");
+        arrayListAv.add("0.33");
+        arrayListAv.add("0.40");
+        arrayListAv.add("0.50");
+        arrayListAv.add("0.63");
+        arrayListAv.add("0.80");
+        arrayListAv.add("1.00");
+    
     }
     
 }
