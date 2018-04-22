@@ -50,20 +50,21 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButtonClose" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButtonMinimize" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="438" max="32767" attributes="0"/>
                   <Component id="jLabelTagAv" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabelAv" min="-2" pref="47" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jButtonClose" max="32767" attributes="0"/>
+                      <Component id="jButtonMinimize" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jButtonConfg" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -74,7 +75,9 @@
                   <Component id="jButtonClose" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jButtonMinimize" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="216" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jButtonConfg" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="169" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabelAv" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
                       <Component id="jLabelTagAv" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
@@ -127,6 +130,19 @@
             </Property>
             <Property name="text" type="java.lang.String" value="AV:"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButtonConfg">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/img/buttonConfg.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonConfgMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

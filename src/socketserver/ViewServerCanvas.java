@@ -47,8 +47,6 @@ public class ViewServerCanvas extends javax.swing.JFrame {
 
         jPanelCanvas.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabelCanvas.setText("jLabel1");
-
         javax.swing.GroupLayout jPanelCanvasLayout = new javax.swing.GroupLayout(jPanelCanvas);
         jPanelCanvas.setLayout(jPanelCanvasLayout);
         jPanelCanvasLayout.setHorizontalGroup(
