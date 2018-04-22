@@ -44,6 +44,8 @@ public class Servidor {
         int labelWith = 0;
         int labelHigh = 0;
         int count = 0;
+        
+        PortConnection portConnection = new PortConnection();
         DefaultListModel listView = null;
         
         ImageIcon icon = null;
@@ -55,7 +57,8 @@ public class Servidor {
         
         try{
            
-            serverSocket = new ServerSocket(5000); 
+            serverSocket = new ServerSocket(Integer.parseInt(PortConnection.getPortConnection()));
+            
             ViewServerSocketFrame viewServerSocketFrame = new ViewServerSocketFrame();
             viewServerSocketFrame.setVisible(true);
                 
@@ -128,9 +131,6 @@ public class Servidor {
                 
                 System.out.println(count);
                 count ++;
-                
-                System.out.println("Pantalla: " + viewServerSocketFrame.getWidth() + " X " + viewServerSocketFrame.getHeight());
-                System.out.println("Label: " + labelWith + " X " + labelHigh);
 
             }
   
