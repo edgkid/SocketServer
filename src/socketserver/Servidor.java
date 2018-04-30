@@ -22,6 +22,10 @@ import jdk.nashorn.internal.parser.JSONParser;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
+
 /**
  *
  * @author Edgar
@@ -46,7 +50,11 @@ public class Servidor {
         int labelWith = 0;
         int labelHigh = 0;
         int count = 0;
+        int countValidator = 0;
+        
         String bytes = null;
+        byte[] decodedByteArray = null;
+        BufferedImage image = null;
         
         PortConnection portConnection = new PortConnection();
         DefaultListModel listView = null;
@@ -72,31 +80,26 @@ public class Servidor {
                 socket = serverSocket.accept();
                 inputStreamReader = new InputStreamReader(socket.getInputStream());
                 bufferReader = new BufferedReader(inputStreamReader);
-                message = bufferReader.readLine();
+                message = bufferReader.readLine();  
                 
-                System.out.println(message);
+                count = Integer.parseInt(message.substring(0,1));
+                bytes = message.substring(1,message.length());
                 
-                JSONObject jsonObject = new JSONObject();
+                Base64.Decoder decoder = Base64.getDecoder();
                 
-                //System.out.println(message.toString().split(",")[0]);
+                try{
+                    decodedByteArray = decoder.decode(bytes);
+                    image = ImageIO.read(new ByteArrayInputStream(decodedByteArray));
+                    
+                }catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
                 
-                /*count = Integer.parseInt(message.toString().split(",")[0].split(":")[1]);
-                System.out.println(count);
-                
-                bytes = message.toString().split(",")[1].split(":")[1].substring(1,message.toString().split(",")[1].split(":")[1].length() - 1);
-                System.out.println(bytes );*/
-               
-
-                /*Base64.Decoder decoder = Base64.getDecoder();
-                //byte[] decodedByteArray = decoder.decode(message);
-                byte[] decodedByteArray = decoder.decode(bytes);
-                BufferedImage image = ImageIO.read(new ByteArrayInputStream(decodedByteArray));
-
                 if (count == 0){
                     labelWith = viewServerSocketFrame.screenSize.width / 2;
                     labelHigh = viewServerSocketFrame.screenSize.height;
                     positionX = (viewServerSocketFrame.screenSize.width / 3) - 100;
-                    System.out.println("Carta");
+                    //System.out.println("Carta");
                 }
                 if (count >= 1) {
 
@@ -105,50 +108,36 @@ public class Servidor {
                          labelWith = viewServerSocketFrame.getWidth();
                          positionX =0;
                          positionY = (viewServerSocketFrame.getHeight() / 2) - (image.getHeight() / 2) ;
-                         System.out.println("Fila Ajustada");
+                         //System.out.println("Fila Ajustada");
                     }else{
                         labelWith = image.getWidth();
                         positionX = (viewServerSocketFrame.getWidth() / 2 ) - (image.getWidth() / 2);
                         positionY = (viewServerSocketFrame.getHeight() / 2) - (image.getHeight() / 2);
-                        System.out.println("Fila No Ajustada");
+                        //System.out.println("Fila No Ajustada");
                     }
 
                 } 
                 
-                if (count > 0){
+                icon = new ImageIcon(image.getScaledInstance(labelWith, labelHigh, Image.SCALE_DEFAULT));
+                viewServerCanvas = new ViewServerCanvas(labelWith, labelHigh, icon, positionX, positionY);
                 
-                    viewServerCanvasAux = (ViewServerCanvas) listView.get(count-1);
-                    viewServerCanvasAux.dispose();
-                    
-                }
-               
-               icon = new ImageIcon(image.getScaledInstance(labelWith, labelHigh, Image.SCALE_DEFAULT));
-               viewServerCanvas = new ViewServerCanvas(labelWith, labelHigh, icon, positionX, positionY);
-               
+                listView.add(countValidator, viewServerCanvas);
+                viewServerCanvas.setVisible(true); 
                 
-                if (count < 12){
-                    listView.add(count,viewServerCanvas );
-                    viewServerCanvas.setVisible(true);
-                    
-                    if (count > 0){
-                        viewServerSocketFrame.getjLabelAv().setText(arrayListAv.get(count-1));
-                    }
-
-                }else{
-                    count = -1;
-                    positionX = 0;
-                    positionY = 0;
-                    for (int i = 0; i < listView.getSize(); i++){
-                       deleteComponent = (ViewServerCanvas) listView.get(i);
-                       deleteComponent.dispose();
-                    }
-                    listView.removeAllElements();
-                    viewServerSocketFrame.getjLabelAv().setText("0");
+                if (countValidator > 0){   
+                     viewServerCanvasAux = (ViewServerCanvas) listView.get(countValidator - 1);
+                     viewServerCanvasAux.dispose();
+                     if (count > 0)
+                        viewServerSocketFrame.getjLabelAv().setText(arrayListAv.get(count - 1));
+                     else
+                        viewServerSocketFrame.getjLabelAv().setText("0");
                 }
                 
                 System.out.println(count);
-                count ++;*/
-
+                System.out.println(count-1);
+                System.out.println(countValidator);
+                System.out.println("_____________");
+                countValidator ++;
             }
   
         }catch(IOException e){
@@ -160,17 +149,17 @@ public class Servidor {
     
     public static void fillAvList(){
         
-        arrayListAv.add("0.1");
-        arrayListAv.add("0.13");
-        arrayListAv.add("0.17");
-        arrayListAv.add("0.20");
-        arrayListAv.add("0.25");
-        arrayListAv.add("0.33");
-        arrayListAv.add("0.40");
-        arrayListAv.add("0.50");
-        arrayListAv.add("0.63");
-        arrayListAv.add("0.80");
-        arrayListAv.add("1.00");
+        arrayListAv.add("0.1");//0
+        arrayListAv.add("0.13");//1
+        arrayListAv.add("0.17");//2
+        arrayListAv.add("0.20");//3
+        arrayListAv.add("0.25");//4
+        arrayListAv.add("0.33");//5
+        arrayListAv.add("0.40");//6
+        arrayListAv.add("0.50");//7
+        arrayListAv.add("0.63");//8
+        arrayListAv.add("0.80");//9
+        arrayListAv.add("1.00");//10
     
     }
     
