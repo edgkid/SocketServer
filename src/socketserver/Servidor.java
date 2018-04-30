@@ -18,7 +18,9 @@ import java.util.Base64;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
-
+import jdk.nashorn.internal.parser.JSONParser;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 /**
  *
@@ -44,6 +46,7 @@ public class Servidor {
         int labelWith = 0;
         int labelHigh = 0;
         int count = 0;
+        String bytes = null;
         
         PortConnection portConnection = new PortConnection();
         DefaultListModel listView = null;
@@ -71,8 +74,22 @@ public class Servidor {
                 bufferReader = new BufferedReader(inputStreamReader);
                 message = bufferReader.readLine();
                 
-                Base64.Decoder decoder = Base64.getDecoder();
-                byte[] decodedByteArray = decoder.decode(message);
+                System.out.println(message);
+                
+                JSONObject jsonObject = new JSONObject();
+                
+                //System.out.println(message.toString().split(",")[0]);
+                
+                /*count = Integer.parseInt(message.toString().split(",")[0].split(":")[1]);
+                System.out.println(count);
+                
+                bytes = message.toString().split(",")[1].split(":")[1].substring(1,message.toString().split(",")[1].split(":")[1].length() - 1);
+                System.out.println(bytes );*/
+               
+
+                /*Base64.Decoder decoder = Base64.getDecoder();
+                //byte[] decodedByteArray = decoder.decode(message);
+                byte[] decodedByteArray = decoder.decode(bytes);
                 BufferedImage image = ImageIO.read(new ByteArrayInputStream(decodedByteArray));
 
                 if (count == 0){
@@ -130,7 +147,7 @@ public class Servidor {
                 }
                 
                 System.out.println(count);
-                count ++;
+                count ++;*/
 
             }
   
