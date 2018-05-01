@@ -85,21 +85,22 @@ public class Servidor {
                 count = Integer.parseInt(message.substring(0,1));
                 bytes = message.substring(1,message.length());
                 
-                Base64.Decoder decoder = Base64.getDecoder();
-                
+                Base64.Decoder decoder = Base64.getMimeDecoder();
+               
                 try{
                     decodedByteArray = decoder.decode(bytes);
-                    image = ImageIO.read(new ByteArrayInputStream(decodedByteArray));
-                    
                 }catch(Exception e){
                     System.out.println(e.getMessage());
+                    count = Integer.parseInt(message.substring(0,2));
+                    bytes = message.substring(2,message.length());
+                    decodedByteArray = decoder.decode(bytes);
                 }
+                image = ImageIO.read(new ByteArrayInputStream(decodedByteArray));
                 
                 if (count == 0){
                     labelWith = viewServerSocketFrame.screenSize.width / 2;
                     labelHigh = viewServerSocketFrame.screenSize.height;
                     positionX = (viewServerSocketFrame.screenSize.width / 3) - 100;
-                    //System.out.println("Carta");
                 }
                 if (count >= 1) {
 
@@ -108,17 +109,15 @@ public class Servidor {
                          labelWith = viewServerSocketFrame.getWidth();
                          positionX =0;
                          positionY = (viewServerSocketFrame.getHeight() / 2) - (image.getHeight() / 2) ;
-                         //System.out.println("Fila Ajustada");
                     }else{
                         labelWith = image.getWidth();
                         positionX = (viewServerSocketFrame.getWidth() / 2 ) - (image.getWidth() / 2);
                         positionY = (viewServerSocketFrame.getHeight() / 2) - (image.getHeight() / 2);
-                        //System.out.println("Fila No Ajustada");
                     }
 
-                } 
+                }
                 
-                icon = new ImageIcon(image.getScaledInstance(labelWith, labelHigh, Image.SCALE_DEFAULT));
+                 icon = new ImageIcon(image.getScaledInstance(labelWith, labelHigh, Image.SCALE_DEFAULT));
                 viewServerCanvas = new ViewServerCanvas(labelWith, labelHigh, icon, positionX, positionY);
                 
                 listView.add(countValidator, viewServerCanvas);
@@ -132,12 +131,16 @@ public class Servidor {
                      else
                         viewServerSocketFrame.getjLabelAv().setText("0");
                 }
-                
+
                 System.out.println(count);
                 System.out.println(count-1);
                 System.out.println(countValidator);
                 System.out.println("_____________");
+                
                 countValidator ++;
+                positionX = 0;
+                positionY = 0;
+                
             }
   
         }catch(IOException e){
