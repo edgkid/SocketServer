@@ -38,8 +38,8 @@ public class Servidor {
     static BufferedReader bufferReader;
     static String message;
     static BufferedImage image = null;
-    static ArrayList<String> arrayListAv = new ArrayList<String>();
-
+    //static ArrayList<String> arrayListAv = new ArrayList<String>();
+    
     /**
      * @param args the command line arguments
      */
@@ -57,6 +57,7 @@ public class Servidor {
         BufferedImage image = null;
         
         PortConnection portConnection = new PortConnection();
+        AvScale avScale = new AvScale ();
         DefaultListModel listView = null;
         
         ImageIcon icon = null;
@@ -64,7 +65,7 @@ public class Servidor {
         ViewServerCanvas viewServerCanvasAux = null;
         ViewServerCanvas deleteComponent = null;
         
-        fillAvList();
+        //fillAvList();
         
         try{
            
@@ -126,16 +127,20 @@ public class Servidor {
                 if (countValidator > 0){   
                      viewServerCanvasAux = (ViewServerCanvas) listView.get(countValidator - 1);
                      viewServerCanvasAux.dispose();
-                     if (count > 0)
-                        viewServerSocketFrame.getjLabelAv().setText(arrayListAv.get(count - 1));
-                     else
-                        viewServerSocketFrame.getjLabelAv().setText("0");
-                }
 
-                System.out.println(count);
-                System.out.println(count-1);
-                System.out.println(countValidator);
-                System.out.println("_____________");
+                     if (count > 0){
+                        viewServerSocketFrame.getjLabelAv().setText(avScale.getAvOriginalMetric().get(count - 1));
+                        viewServerSocketFrame.getjLabelImperial().setText(avScale.getAvImperial().get(count - 1));
+                        viewServerSocketFrame.getjLabelAvDecimal().setText(avScale.getAvDecimal().get(count - 1));
+                        viewServerSocketFrame.getjLabelAvLogMar().setText(avScale.getAvLogmar().get(count - 1));
+                     }else{
+                        viewServerSocketFrame.getjLabelAv().setText("0");
+                        viewServerSocketFrame.getjLabelImperial().setText("0");
+                        viewServerSocketFrame.getjLabelAvDecimal().setText("0");
+                        viewServerSocketFrame.getjLabelAvLogMar().setText("0");
+                     }
+                     
+                }
                 
                 countValidator ++;
                 positionX = 0;
@@ -150,7 +155,7 @@ public class Servidor {
         
     }
     
-    public static void fillAvList(){
+    /*public static void fillAvList(){
         
         arrayListAv.add("0.1");//0
         arrayListAv.add("0.13");//1
@@ -164,6 +169,6 @@ public class Servidor {
         arrayListAv.add("0.80");//9
         arrayListAv.add("1.00");//10
     
-    }
+    }*/
     
 }

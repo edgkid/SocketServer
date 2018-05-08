@@ -54,8 +54,11 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
         jButtonClose = new javax.swing.JButton();
         jButtonMinimize = new javax.swing.JButton();
         jLabelAv = new javax.swing.JLabel();
-        jLabelTagAv = new javax.swing.JLabel();
         jButtonConfg = new javax.swing.JButton();
+        jLabelAvDecimal = new javax.swing.JLabel();
+        jLabelTagAv1 = new javax.swing.JLabel();
+        jLabelImperial = new javax.swing.JLabel();
+        jLabelAvLogMar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -83,9 +86,6 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
         jLabelAv.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabelAv.setText("0");
 
-        jLabelTagAv.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jLabelTagAv.setText("AV:");
-
         jButtonConfg.setBackground(new java.awt.Color(255, 255, 255));
         jButtonConfg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buttonConfg.png"))); // NOI18N
         jButtonConfg.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -94,38 +94,64 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabelAvDecimal.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jLabelAvDecimal.setText("0");
+
+        jLabelTagAv1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jLabelTagAv1.setText("AV:");
+
+        jLabelImperial.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabelImperial.setText("0");
+
+        jLabelAvLogMar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabelAvLogMar.setText("0");
+
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
         jPanelLayout.setHorizontalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
-                .addContainerGap(438, Short.MAX_VALUE)
-                .addComponent(jLabelTagAv)
-                .addGap(18, 18, 18)
-                .addComponent(jLabelAv, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
             .addGroup(jPanelLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabelTagAv1)
+                    .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jButtonClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonMinimize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonConfg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonMinimize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonConfg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabelAvDecimal, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                    .addComponent(jLabelImperial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 363, Short.MAX_VALUE)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelAv, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelAvLogMar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButtonClose)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonMinimize)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonConfg)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelAv, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelTagAv, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
+                        .addComponent(jButtonClose)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonMinimize)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonConfg)
+                        .addContainerGap(227, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabelImperial, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabelTagAv1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelAvLogMar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabelAv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelAvDecimal, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(11, 11, 11))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -207,6 +233,31 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
     public void setjLabelAv(JLabel jLabelAv) {
         this.jLabelAv = jLabelAv;
     }
+
+    public JLabel getjLabelAvDecimal() {
+        return jLabelAvDecimal;
+    }
+
+    public void setjLabelAvDecimal(JLabel jLabelAvDecimal) {
+        this.jLabelAvDecimal = jLabelAvDecimal;
+    }
+
+    public JLabel getjLabelAvLogMar() {
+        return jLabelAvLogMar;
+    }
+
+    public void setjLabelAvLogMar(JLabel jLabelAvLogMar) {
+        this.jLabelAvLogMar = jLabelAvLogMar;
+    }
+
+    public JLabel getjLabelImperial() {
+        return jLabelImperial;
+    }
+
+    public void setjLabelImperial(JLabel jLabelImperial) {
+        this.jLabelImperial = jLabelImperial;
+    }
+    
     
     
 
@@ -215,7 +266,10 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButtonConfg;
     private javax.swing.JButton jButtonMinimize;
     private javax.swing.JLabel jLabelAv;
-    private javax.swing.JLabel jLabelTagAv;
+    private javax.swing.JLabel jLabelAvDecimal;
+    private javax.swing.JLabel jLabelAvLogMar;
+    private javax.swing.JLabel jLabelImperial;
+    private javax.swing.JLabel jLabelTagAv1;
     private static javax.swing.JPanel jPanel;
     // End of variables declaration//GEN-END:variables
 }
