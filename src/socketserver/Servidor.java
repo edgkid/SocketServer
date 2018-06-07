@@ -13,18 +13,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.Base64;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
-import jdk.nashorn.internal.parser.JSONParser;
-/*import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.ParseException;*/
 
 /**
  *
@@ -162,21 +154,5 @@ public class Servidor {
         }
         
     }
-    
-    /*public static void fillAvList(){
-        
-        arrayListAv.add("0.1");//0
-        arrayListAv.add("0.13");//1
-        arrayListAv.add("0.17");//2
-        arrayListAv.add("0.20");//3
-        arrayListAv.add("0.25");//4
-        arrayListAv.add("0.33");//5
-        arrayListAv.add("0.40");//6
-        arrayListAv.add("0.50");//7
-        arrayListAv.add("0.63");//8
-        arrayListAv.add("0.80");//9
-        arrayListAv.add("1.00");//10
-    
-    }*/
     
 }
