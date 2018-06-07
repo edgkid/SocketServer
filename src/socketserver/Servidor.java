@@ -83,10 +83,16 @@ public class Servidor {
                 bufferReader = new BufferedReader(inputStreamReader);
                 message = bufferReader.readLine();  
                 
-                count = Integer.parseInt(message.substring(0,1));
-                bytes = message.substring(1,message.length());
-                
+                try{
+                    count = Integer.parseInt(message.substring(0,2));
+                    bytes = message.substring(2,message.length());
+                }catch(Exception e){
+                    count = Integer.parseInt(message.substring(0,1));
+                    bytes = message.substring(1,message.length());
+                }
+          
                 Base64.Decoder decoder = Base64.getMimeDecoder();
+                System.out.println(count);
                
                 try{
                     decodedByteArray = decoder.decode(bytes);
@@ -97,7 +103,7 @@ public class Servidor {
                     decodedByteArray = decoder.decode(bytes);
                 }
                 image = ImageIO.read(new ByteArrayInputStream(decodedByteArray));
-                
+          
                 if (count == 0){
                     labelWith = viewServerSocketFrame.screenSize.width / 2;
                     labelHigh = viewServerSocketFrame.screenSize.height;
@@ -117,13 +123,13 @@ public class Servidor {
                     }
 
                 }
-                
+
                  icon = new ImageIcon(image.getScaledInstance(labelWith, labelHigh, Image.SCALE_DEFAULT));
                 viewServerCanvas = new ViewServerCanvas(labelWith, labelHigh, icon, positionX, positionY);
-                
+
                 listView.add(countValidator, viewServerCanvas);
                 viewServerCanvas.setVisible(true); 
-                
+
                 if (countValidator > 0){   
                      viewServerCanvasAux = (ViewServerCanvas) listView.get(countValidator - 1);
                      viewServerCanvasAux.dispose();
@@ -139,12 +145,14 @@ public class Servidor {
                         viewServerSocketFrame.getjLabelAvDecimal().setText("0");
                         viewServerSocketFrame.getjLabelAvLogMar().setText("0");
                      }
-                     
+
                 }
-                
+
                 countValidator ++;
                 positionX = 0;
                 positionY = 0;
+
+
                 
             }
   
