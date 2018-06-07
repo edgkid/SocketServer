@@ -5,6 +5,9 @@
  */
 package socketserver;
 
+import java.awt.Image;
+import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 /**
@@ -18,6 +21,7 @@ public class ViewServerCanvas extends javax.swing.JFrame {
      */
     public ViewServerCanvas(int withCanvas, int heightCanvas, ImageIcon icon, int positionX, int positionY) {
         initComponents();
+        this.setIconImage(new ImageIcon(getClass().getResource("/img/ico_projector.png")).getImage());
         
         this.jPanelCanvas.setSize(withCanvas, heightCanvas);
         this.jLabelCanvas.setSize(withCanvas, heightCanvas);

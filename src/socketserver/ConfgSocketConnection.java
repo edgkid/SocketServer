@@ -6,7 +6,10 @@
 package socketserver;
 
 import java.awt.Color;
+import java.awt.Image;
+import java.io.File;
 import java.net.InetAddress;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -19,6 +22,7 @@ public class ConfgSocketConnection extends javax.swing.JFrame {
      */
     public ConfgSocketConnection() {
         initComponents();
+        this.setIconImage(new ImageIcon(getClass().getResource("/img/ico_projector.png")).getImage());
          
          try{
              InetAddress address = InetAddress.getLocalHost();

@@ -6,7 +6,11 @@
 package socketserver;
 
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 /**
  *
@@ -22,6 +26,9 @@ public class ViewServerSocketFrame extends javax.swing.JFrame {
      */
     public ViewServerSocketFrame() {
         initComponents();
+        
+        this.setIconImage(new ImageIcon(getClass().getResource("/img/ico_projector.png")).getImage());
+            
         
         t = Toolkit.getDefaultToolkit();
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();
